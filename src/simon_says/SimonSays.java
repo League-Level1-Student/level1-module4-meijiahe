@@ -38,33 +38,43 @@ JFrame jf=new JFrame();
 		images.put(new Integer(KeyEvent.VK_RIGHT), "right.jpg");
 		images.put(new Integer(KeyEvent.VK_LEFT), "left.jpg");
 		// 3. Use a JOptionPane to tell the user the rules: "Press the matching
-		// key when
-		// 'Simon says' otherwise press a different key"
-JOptionPane.showMessageDialog(null, "");
+		// key when 'Simon says' otherwise press a different key"//
+JOptionPane.showMessageDialog(null, "Press the matching key when 'Simon says' otherwise press a different key");
 		// 4. Call the showImage method to show an image
-
+showImage();
 	}
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
-
+int kk=1;
 		// 16. If the keyCode matches the imageIndex and "Simon says"
-
+if (e.getKeyCode()==imageIndex&&simonSays==true) {
+	kk++;
+	speak("You are correct");
+}
 		// 17. Increase the value of score
 
 		// 18. Use the speak method to tell the user they were correct
 
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't
 		// say..."
-
+if (e.getKeyCode()==imageIndex&&simonSays==false) {
+	kk++;
+	speak("You are correct");
+}
 		// 20. Increase the value of score
 
 		// 21. Use the speak method to tell the user they were correct
 
 		// 22. Increment tries by 1
-
+kk++;
 		// 25. If tries is greater than 9 (or however many you want)...
-
+if (kk>=9) {
+	System.out.println(kk);
+	System.exit(0);
+	jf.dispose();
+	showImage();
+}
 		// 26. Tell the user their score
 
 		// 27. Exit the program
@@ -76,26 +86,27 @@ JOptionPane.showMessageDialog(null, "");
 
 	private void showImage() {
 		// 5. Initialize your frame to a new JFrame()
-
+jf=new JFrame();
 		// 6. Set the frame to visible
-
+jf.setVisible(true);
 		// 7. Uncomment the following line to add a random image to your frame
-		// frame.add(getNextRandomImage());
+		jf.add(getNextRandomImage());
 
 		// 8. Set the name of your frame
 
 		// 9. Pack the frame
-
-		// 10. Set the defaultCloseOperation of your from to
-		// JFrame.EXIT_ON_CLOSE
+jf.pack();
+		// 10. Set the defaultCloseOperation of your frame to
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// 11. Add a key listener to the frame
-
+jf.addKeyListener(this);
 		// 12. Create a new instance of Random
-
+Random rr=new Random();
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
-
+int rr1=rr.nextInt();
+if (rr1)
 		// 14. Above, set the value of simonSays to true/false appropriately
 
 	}
