@@ -105,8 +105,15 @@ jf.addKeyListener(this);
 Random rr=new Random();
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
-int rr1=rr.nextInt();
-if (rr1)
+int rr1=rr.nextInt(2);
+if (rr1==0){
+speak("Simon says press this key");
+simonSays=true;
+}
+if (rr1==1) {
+	speak("Press this key");
+	simonSays=false;
+}
 		// 14. Above, set the value of simonSays to true/false appropriately
 
 	}
