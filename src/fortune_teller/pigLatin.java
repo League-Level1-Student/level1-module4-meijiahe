@@ -1,5 +1,6 @@
 package fortune_teller;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +16,7 @@ JPanel panel=new JPanel();
 JLabel label=new JLabel();
 JButton button=new JButton();
 JTextField textfield1=new JTextField();
-JTextField textfield2=new JTextField();
+PigLatinTranslator pig=new PigLatinTranslator();
 
 void run() {
 frame.setVisible(true);
@@ -25,17 +26,18 @@ panel.add(textfield1);
 panel.add(button);
 button.addActionListener(this);
 button.setText("Translate");
-panel.add(textfield2);
 frame.add(panel);
 frame.setSize(50, 100);
-textfield1.setSize(25, 13);
-textfield2.setSize(25, 13);
+textfield1.setPreferredSize(new Dimension(100,20));
 frame.pack();
 }
 
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
-	
+String input =textfield1.getText();
+String translate=pig.translate(input);
+label.setText(translate);
+frame.pack();
 }
 }
