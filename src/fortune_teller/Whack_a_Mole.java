@@ -1,10 +1,12 @@
 package fortune_teller;
 
+import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Random;
 
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +20,7 @@ JLabel label=new JLabel();
 int rr=0;
 int rl=0;
 Date nd=new Date();
+int miss=0;
 public static void main(String[] args) {
 Whack_a_Mole dang=new Whack_a_Mole();
 dang.run();
@@ -59,16 +62,27 @@ public void actionPerformed(ActionEvent e) {
 		draw();
 		rl++;
 	}
+	else {
+		miss++;
+	}
+	if (miss>=5) {
+	endGame(nd,rl);
+	}
 	rr++;
 	if (rr>10) {
 		endGame(nd,rl);
 	}
+	playSound("ma.wav");
 }
 private void endGame(Date timeAtStart, int molesWhacked) {
     Date timeAtEnd = new Date();
     JOptionPane.showMessageDialog(null, "Your whack rate is "
          + ((timeAtEnd.getTime() - timeAtStart.getTime()) / 1000.00 / molesWhacked)
          + " moles per second.");
+}
+private void playSound(String fileName) { 
+    AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
+    sound.play();
 }
 }
 
